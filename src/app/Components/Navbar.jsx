@@ -1,16 +1,15 @@
 
+import Link from "next/link";
 import React from "react";
 import { FaBars } from 'react-icons/fa';
-
-
 const Navbar = () => {
   const links = (
     <>
       <li>
-        <a href="">Home</a>
+        <Link href='/'>Home</Link>
       </li>
       <li>
-        <a href="">Products</a>
+        <Link href={`products`}>Products</Link>
       </li>
     </>
   );
@@ -34,7 +33,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Login</a>
+        <Link href={`/login`} className="btn">Login</Link>
       </div>
     </div>
   );
