@@ -1,20 +1,21 @@
 "use client"
 import React from 'react';
-
-
 import { loginUser } from '../actions/auth/loginUser';
 import AuthLottie from '@/app/Components/AuthLottie';
 import Link from 'next/link';
-
-
+import { signIn } from "next-auth/react"
 const Login = () => {
     const handlesubmit = async(e)=>{
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-      
-      await loginUser({email,password})
+      try {
+         await signIn("credentials",{email,password, callbackUrl:"/"}) 
+      } catch (error) {
+        console.log(error);
+      }
+   
     }
     return (
       <div className="hero bg-base-200 min-h-screen">
