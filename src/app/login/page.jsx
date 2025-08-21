@@ -1,20 +1,26 @@
 "use client"
 import React from 'react';
-import login from '@/app/Assets/lotties/login.json'
-import Lottie from "lottie-react";
+
+
+import { loginUser } from '../actions/auth/loginUser';
+import AuthLottie from '@/app/Components/AuthLottie';
+import Link from 'next/link';
+
+
 const Login = () => {
-    const handlesubmit = (e)=>{
+    const handlesubmit = async(e)=>{
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email,password);
+      
+      await loginUser({email,password})
     }
     return (
       <div className="hero bg-base-200 min-h-screen">
   <div className="hero-content flex-col lg:flex-row-reverse">
         <div className='w-full'>
-        <Lottie animationData={login} loop={true}/>
+       <AuthLottie/>
         </div>
     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
       <div className="card-body">
@@ -26,6 +32,7 @@ const Login = () => {
           <div><a className="link link-hover">Forgot password?</a></div>
           <button className="btn btn-neutral mt-4">Login</button>
         </form>
+        <span className=''>Don't have an account <Link className='text-blue-500' href={`/register`}>Register Now</Link></span>
       </div>
     </div>
   </div>
