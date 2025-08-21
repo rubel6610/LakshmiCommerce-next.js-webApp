@@ -5,14 +5,16 @@ import { registerUser } from "../actions/auth/registerUser";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Register = () => {
+  const router = useRouter();
   const handlesubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-
+    const { email, password } = data;
     // Show loading alert
     Swal.fire({
       title: "Registering...",
@@ -32,11 +34,19 @@ const Register = () => {
           title: "Success!",
           text: res.message || "User registered successfully",
           confirmButtonText: "Continue",
-        }).then((result) => {
+        }).then(async (result) => {
           if (result.isConfirmed) {
-            form.reset(); // Reset the form
-            // Optionally redirect to login page
-            // window.location.href = '/login';
+            form.reset();
+            const signInResult = await signIn("credentials", {
+              email,
+              password,
+              redirect: false,
+            });
+            if (signInResult?.ok) {
+              router.push("/products");
+            } else {
+              router.push("/login");
+            }
           }
         });
       } else {
@@ -67,7 +77,7 @@ const Register = () => {
           Swal.showLoading();
         },
       });
-      await signIn("google", { callbackUrl: "/", redirect: false });
+      await signIn("google", { callbackUrl: "/products", redirect: false });
       Swal.close();
     } catch (error) {
       Swal.fire({

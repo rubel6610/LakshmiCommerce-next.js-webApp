@@ -28,7 +28,7 @@ const Login = () => {
         email,
         password,
         redirect: false,
-        callbackUrl: "/",
+        callbackUrl: "/products",
       });
       if (response?.ok) {
         Swal.fire({
@@ -40,7 +40,7 @@ const Login = () => {
           showConfirmButton: false,
         });
         form.reset();
-        router.push("/");
+        router.push("/products");
       } else {
         Swal.fire({
           icon: "error",
@@ -72,7 +72,7 @@ const Login = () => {
       
       // Sign in with Google
       await signIn("google", {
-        callbackUrl: "/",
+        callbackUrl: "/products",
         redirect: false,
       });
       
