@@ -1,11 +1,11 @@
 "use client"
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaBars } from 'react-icons/fa';
 const Navbar = () => {
   const {data:session, status} = useSession();
-  console.log(session,status);
   const links = (
     <>
       <li>
@@ -38,7 +38,16 @@ const Navbar = () => {
       <div className="navbar-end">
         
         {status === "authenticated"?(
-          <button onClick={()=>signOut()} className="btn btn-outline ">LogOut</button>
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost">
+              <Image className="rounded-full h-10 w-10" src={session.user?.image} alt="Profile picture" height={30} width={30}/>
+            </div>
+            
+            <div tabIndex={0}
+            className="dropdown-content bg-base-100 rounded-box z-1   p-2 shadow">
+              <button onClick={()=>signOut()} className="btn  ">LogOut</button>
+            </div>
+          </div>
         ):(
           <>
           <Link href={`/login`} className="btn">Login</Link>

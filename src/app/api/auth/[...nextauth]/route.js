@@ -1,7 +1,11 @@
-import { loginUser } from "@/app/actions/auth/loginUser";
+
 import NextAuth from "next-auth";
+import { loginUser } from "@/app/actions/auth/loginUser";
 import CredentialsProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google";
+import { signIn } from "next-auth/react";
+import { collectionsobj, dbConnect } from "@/app/lib/dbConnect";
+
 export const authOptions = {
  providers: [
   CredentialsProvider({
@@ -36,8 +40,28 @@ export const authOptions = {
 ],
 pages:{
     signIn:"/login"
+},
+callbacks:{
+  async signIn({account,user}){
+    if(account){
+      const {providerAccountId,provider}=account;
+      const {email,image,name}=user;
+      const userCollection =await dbConnect(collectionsobj.usersCollection);
+      const isExistUser =await userCollection.findOne({email});
+      if(!isExistUser){
+        const payload ={providerAccountId,provider,email,image,name};
+        await userCollection.insertOne(payload)
+      }
+    }
+    return true;
+  }
+  
 }
+
 }
+
+
+
 const handler = NextAuth(authOptions)
 
 export {handler as GET, handler as POST}
