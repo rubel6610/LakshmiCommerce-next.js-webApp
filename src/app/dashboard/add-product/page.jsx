@@ -6,6 +6,7 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import { FaSpinner, FaPlus, FaTrash } from 'react-icons/fa';
 import { addProduct } from '@/app/actions/products/addProducts';
 import Swal from 'sweetalert2';
+import { imgupload } from '@/app/actions/auth/imgupload';
 
 const AddProductPage = () => {
   const { data: session, status } = useSession();
@@ -24,7 +25,6 @@ const AddProductPage = () => {
       price: '',
       weight: '',
       origin: '',
-      image: '',
       features: [{ value: '' }]
     }
   });
@@ -57,12 +57,17 @@ const AddProductPage = () => {
       const filteredFeatures = data.features
         .map(f => f.value.trim())
         .filter(value => value !== '');
-
+       let imageUrl = null;
+           if (data.image && data.image[0]) {
+             imageUrl = await imgupload(data.image[0])
+           }
+           
       const productData = {
         ...data,
         price: parseFloat(data.price),
         features: filteredFeatures,
-        inStock: true
+        inStock: true,
+        image:imageUrl,
       };
 
     const res =   await addProduct(productData);
@@ -198,12 +203,12 @@ const AddProductPage = () => {
 
               {/* Image URL */}
               <div>
-                <label className="label font-semibold">Image URL *</label>
+                <label className="label font-semibold">Image (Max 1 Mb) *</label>
                 <input
-                  type="url"
+                  type="file"
                   {...register("image", { 
                     required: "Image URL is required",
-                    pattern: { value: /^(https?:\/\/).+$/, message: "Enter valid URL" }
+                 
                   })}
                   placeholder="https://example.com/image.jpg"
                   className="input input-bordered w-full"

@@ -6,16 +6,20 @@ import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { imgupload } from "../actions/auth/imgupload";
 
 const Register = () => {
   const router = useRouter();
+
+  
   const handlesubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
+    const file = form.image.files[0];
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
     const { email, password } = data;
-    // Show loading alert
+
     Swal.fire({
       title: "Registering...",
       text: "Please wait while we create your account",
@@ -26,7 +30,17 @@ const Register = () => {
     });
 
     try {
-      const res = await registerUser(data);
+      let imageUrl = null;
+      if (file) {
+        imageUrl = await imgupload(file);
+      }
+   
+      const newData = {
+        ...data,
+        photourl: imageUrl,
+      };
+      console.log(newData,imageUrl);
+      const res = await registerUser(newData);
 
       if (res.success) {
         Swal.fire({
@@ -67,6 +81,7 @@ const Register = () => {
       });
     }
   };
+
   const handleGoogleSignIn = async () => {
     try {
       Swal.fire({
@@ -106,12 +121,11 @@ const Register = () => {
                 placeholder="Name"
                 required
               />
-              <label className="label">PhotoUrl</label>
+              <label className="label">User Image</label>
               <input
-                type="text"
-                name="photourl"
+                type="file"
+                name="image"
                 className="input"
-                placeholder="PhotoUrl"
               />
               <label className="label">Email</label>
               <input
@@ -136,7 +150,6 @@ const Register = () => {
             </form>
             <div className="divider">OR</div>
 
-            {/* Google Sign-In Button */}
             <button
               onClick={handleGoogleSignIn}
               className="btn btn-outline w-full gap-2"

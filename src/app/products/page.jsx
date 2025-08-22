@@ -9,7 +9,7 @@ const ProductsPage = async() => {
   const products = await productCollection.find().toArray();
 
   return (
-    <div className="min-h-screen bg-base-100 p-4">
+    <div className="min-h-screen bg-base-200 p-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -30,7 +30,7 @@ const ProductsPage = async() => {
               <figure className="relative h-48 overflow-hidden">
                 <Image
                   src={product.image}
-                  alt={product.name}
+                  alt="product image"
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -47,7 +47,7 @@ const ProductsPage = async() => {
                 </h2>
 
                 {/* Product Description */}
-                <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2 mb-4">
+                <p className="text-base-content text-sm line-clamp-2 mb-4">
                   {product.description}
                 </p>
 
@@ -58,7 +58,7 @@ const ProductsPage = async() => {
                     <span className="text-2xl font-bold text-primary">
                       {product.price}<span className='text-xs'>BDT</span>
                     </span>
-                    <span className="text-sm text-gray-500 dark:text-gray-400 ml-1">/pack</span>
+                  
                   </div>
 
                   {/* Details Button */}

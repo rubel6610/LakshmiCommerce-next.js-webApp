@@ -7,6 +7,7 @@ export const addProduct = async (productData) => {
     const productCollection = await dbConnect(
       collectionsobj.productsCollection
     );
+ 
     const newProducts = {
       ...productData,
       createdAt: new Date(),

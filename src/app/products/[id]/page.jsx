@@ -68,7 +68,7 @@ const ProductDetailsPage = async ({ params }) => {
             {/* Description */}
             <div>
               <h3 className="text-lg font-semibold mb-2">Description</h3>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+              <p className="text-base-content leading-relaxed">
                 {product.description}
               </p>
             </div>
@@ -80,7 +80,7 @@ const ProductDetailsPage = async ({ params }) => {
                 {product.features?.map((feature, index) => (
                   <li key={index} className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                    <span className="text-base-content">{feature}</span>
                   </li>
                 ))}
               </ul>
