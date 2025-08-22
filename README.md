@@ -29,7 +29,7 @@ It is built with **Next.js 14**, **MongoDB**, and **NextAuth**, offering a seaml
    git clone <your-repo-url>
    cd lakshmicommerce
 2. **Install Dependencies**
-    ```npm install
+    - npm install
 
 3. **Configure Environment Variables**
     ```MONGODB_URI=your_mongodb_connection_string
@@ -38,14 +38,15 @@ It is built with **Next.js 14**, **MongoDB**, and **NextAuth**, offering a seaml
     DB_NAME=your mongodb database name
     NEXT_PUBLIC_IMGBB_KEY=your imgbb-api-key
 4. **Run the Development Server**
-    ```npm run dev
+    - npm run dev
 
-5.**Route Summary**
-| Route          |    Description                    Access      
------------------------------------------------- | ------------- 
-| `/`           | Homepage with product showcase | Public        
-| `/products`     | All products listing         | Public        
-| `/products/[id]` | Product details page        | Public 
-| `/login`    | Login with Google or credentials | Public  
-| `/register` | Register with credentials        | Public     
+5. **Route Summary**
+| Route          |    Description                |  Access   |   
+------------------------------------------------------------- 
+| `/`           | Homepage with product showcase | Public      |  
+| `/products`     | All products listing         | Public      | 
+| `/products/[id]` | Product details page        | Public      |
+| `/dashboard/add-products` | add product        | private     |
+| `/login`    | Login with Google or credentials | Public      |
+| `/register` | Register with credentials        | Public      |
 

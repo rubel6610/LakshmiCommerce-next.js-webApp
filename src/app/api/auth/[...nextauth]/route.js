@@ -38,6 +38,9 @@ export const authOptions = {
   }),
   
 ],
+ secret: process.env.NEXTAUTH_SECRET,
+  trustHost: true, // ← This is crucial for Vercel
+  debug: process.env.NODE_ENV === 'development',
 pages:{
     signIn:"/login"
 },
