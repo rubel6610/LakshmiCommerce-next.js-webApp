@@ -49,5 +49,5 @@ It is built with **Next.js 14**, **MongoDB**, and **NextAuth**, offering a seaml
 | `/products/[id]` | Product details page        | Public    |  
 | `/dashboard/add-products` | add product        | protected  |   
 | `/login`    | Login with Google or credentials | Public     | 
-| `/register` | Register with credentials        | Public      |
+| `/register` | Register with Google or credentials    | Public      |
 

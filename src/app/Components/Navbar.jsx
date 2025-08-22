@@ -51,7 +51,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <Link href="/" className="btn btn-ghost text-xl">
+        <Link href="/" className="btn btn-ghost text-xs lg:text-xl">
           LakshmiCommerce
         </Link>
       </div>
@@ -60,7 +60,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end gap-2">
         {/* Dark/Light Mode Toggle */}
-        <label className="swap swap-rotate btn btn-ghost btn-circle">
+        <label className="swap swap-rotate btn btn-xs lg:btn-md btn-ghost btn-circle">
           <input
             type="checkbox"
             checked={theme === "dark"}
@@ -99,7 +99,7 @@ const Navbar = () => {
               </li>
 
               <li>
-                <button onClick={() => signOut()} className="text-error">
+                <button onClick={() => signOut()} className="text-error btn-xs lg:btn-md">
                   Logout
                 </button>
               </li>
@@ -107,10 +107,10 @@ const Navbar = () => {
           </div>
         ) : (
           <>
-            <Link href={`/login`} className="btn btn-primary">
+            <Link href={`/login`} className="btn btn-xs lg:btn-md btn-primary">
               Login
             </Link>
-            <Link href={`/register`} className="btn btn-outline">
+            <Link href={`/register`} className="btn btn-xs lg:btn-md btn-outline">
               Register
             </Link>
           </>
