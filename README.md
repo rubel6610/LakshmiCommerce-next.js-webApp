@@ -40,7 +40,7 @@ It is built with **Next.js 14**, **MongoDB**, and **NextAuth**, offering a seaml
 4. **Run the Development Server**
     - npm run dev
 
-5. **Route Summary**
+5.**Route Summary**
 | Route          |    Description                |  Access     
 ------------------------------------------------ | ----------- 
 | `/`           | Homepage with product showcase | Public       
