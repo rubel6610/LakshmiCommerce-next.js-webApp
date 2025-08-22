@@ -1,13 +1,13 @@
+export const dynamic = 'force-dynamic';
+export const revalidate = 30;
 import React from 'react';
 import Image from 'next/image';
 import { FaEye } from 'react-icons/fa';
 import Link from 'next/link';
-import { collectionsobj, dbConnect } from '../lib/dbConnect';
+import { products } from '../actions/products/products';
 
 const ProductsPage = async() => {
-  const productCollection = await dbConnect(collectionsobj.productsCollection);
-  const products = await productCollection.find().toArray();
-
+const result = await products(0);
   return (
     <div className="min-h-screen bg-base-200 p-4">
       <div className="max-w-7xl mx-auto">
@@ -21,7 +21,7 @@ const ProductsPage = async() => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {products.map((product) => (
+          {result.products.map((product) => (
             <div
               key={product._id}
               className="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group border border-base-300/50"

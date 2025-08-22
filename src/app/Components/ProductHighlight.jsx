@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { FaStar, FaShoppingCart } from 'react-icons/fa';
 
 const ProductHighlight = async () => {
-  const result = await products();
+  const result = await products(4);
   
   if (!result?.success || !result.products || result.products.length === 0) {
     return (
@@ -16,7 +16,7 @@ const ProductHighlight = async () => {
   }
 
   return (
-    <div className="py-12 bg-base-100">
+    <div className="py-12 bg-base-300">
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
