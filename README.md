@@ -42,7 +42,7 @@ It is built with **Next.js 14**, **MongoDB**, and **NextAuth**, offering a seaml
 
 5. **Route Summary**
 | Route          |    Description                |  Access     
-------------------------------------------------------------- 
+---------------- | -------------------------------- | ----------- 
 | `/`           | Homepage with product showcase | Public       
 | `/products`     | All products listing         | Public      
 | `/products/[id]` | Product details page        | Public      
