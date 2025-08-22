@@ -5,6 +5,7 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "images.pexels.com",
       "avatars.githubusercontent.com",
+      "https://www.jiomart.com"
     ],
     remotePatterns: [
       {

@@ -4,6 +4,7 @@ const uri = process.env.MONGODB_URI;
 
 export const collectionsobj = {
   usersCollection: "users",
+  productsCollection:"products"
 };
 
 let client;
