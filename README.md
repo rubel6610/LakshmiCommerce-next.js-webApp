@@ -41,12 +41,12 @@ It is built with **Next.js 14**, **MongoDB**, and **NextAuth**, offering a seaml
     - npm run dev
 
 5. **Route Summary**
-| Route          |    Description                |  Access   |   
+| Route          |    Description                |  Access     
 ------------------------------------------------------------- 
-| `/`           | Homepage with product showcase | Public      |  
-| `/products`     | All products listing         | Public      | 
-| `/products/[id]` | Product details page        | Public      |
-| `/dashboard/add-products` | add product        | private     |
-| `/login`    | Login with Google or credentials | Public      |
-| `/register` | Register with credentials        | Public      |
+| `/`           | Homepage with product showcase | Public       
+| `/products`     | All products listing         | Public      
+| `/products/[id]` | Product details page        | Public      
+| `/dashboard/add-products` | add product        | private     
+| `/login`    | Login with Google or credentials | Public      
+| `/register` | Register with credentials        | Public      
 
